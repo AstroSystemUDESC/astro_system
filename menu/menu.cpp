@@ -4,6 +4,7 @@
 
 #include "../includes/menu.h"
 #include "../includes/positionStar.h"
+#include "../includes/moon.h"
 
 #include <iostream>
 #include <string>
@@ -42,5 +43,18 @@ void menuPositionStar() {
         if (nextStep == 0) {
             break;
         }
+    }
+}
+
+void menuMoon() {
+    int action;
+
+    calcMoonPhase();
+    cout << "0 - Voltar para o menu\n";
+    cin >> action;
+
+    while (action != 0) {
+        cout << "Ação não existente, por favor, digite um número correto!\n";
+        cin >> action;
     }
 }

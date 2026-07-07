@@ -35,15 +35,8 @@ void populateStarsVector() {
 void calculatePositionStar(int indexStar) {
     Star star = stars[indexStar];
     double raDegrees = rightAscensionToDegrees(star.raHours, star.raMinutes, star.raSeconds);
-    auto currentInstant = system_clock::now();
-    auto timeSinceEpoch = currentInstant.time_since_epoch();
-    auto day = floor<days>(timeSinceEpoch);
-    auto timeOfDay = duration_cast<seconds>(timeSinceEpoch - day);
-    auto today = floor<days>(system_clock::now());
-    hh_mm_ss time{timeOfDay};
-    year_month_day ymd{today};
 
-    double julianDay = calculateJDUTC(static_cast<int>(ymd.year()), static_cast<unsigned>(ymd.month()), static_cast<unsigned>(ymd.day()), time.hours().count(), time.minutes().count(), time.seconds().count());
+    double julianDay = calculateJDUTC();
 
     double tsg = calculateTSG(julianDay);
     double tsl = calculateTSL(tsg, -48.85);

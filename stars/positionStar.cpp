@@ -5,10 +5,12 @@
 #include <cmath>
 #include <numbers>
 #include <algorithm>
+#include <chrono>
 #include "../includes/positionStar.h"
 
 using namespace std;
 using namespace numbers;
+using namespace chrono;
 
 constexpr double DEG_TO_RAD = pi / 180;
 constexpr double RAD_TO_DEG = 180.0 / pi;
@@ -17,20 +19,35 @@ double rightAscensionToDegrees(int hours, int minutes, int seconds) {
     return (hours + minutes/60.0 + seconds/3600.0) * 15.0;
 }
 
-double calculateJDUTC(int year, int month, int day, int hour, int minute, int second) {
+double calculateJDUTC() {
+    auto currentInstant = system_clock::now();
+    auto timeSinceEpoch = currentInstant.time_since_epoch();
+    auto day = floor<days>(timeSinceEpoch);
+    auto timeOfDay = duration_cast<seconds>(timeSinceEpoch - day);
+    auto today = floor<days>(system_clock::now());
+    hh_mm_ss time{timeOfDay};
+    year_month_day ymd{today};
+
+    int yearJulian = static_cast<int>(ymd.year());
+    unsigned monthJulian = static_cast<unsigned>(ymd.month());
+    unsigned dayJulian = static_cast<unsigned>(ymd.day());
+    long hour = time.hours().count();
+    long minute = time.minutes().count();
+    long second = time.seconds().count();
+
     double dayFraction = (hour + minute / 60.0 + second / 3600.0) / 24.0;
 
-    if (month <= 2) {
-        year--;
-        month += 12;
+    if (monthJulian <= 2) {
+        yearJulian--;
+        monthJulian += 12;
     }
 
-    int A = year / 100;
+    int A = yearJulian / 100;
     int B = 2 - A + A / 4;
 
-    return floor(365.25 * (year + 4716))
-         + floor(30.6001 * (month + 1))
-         + day
+    return floor(365.25 * (yearJulian + 4716))
+         + floor(30.6001 * (monthJulian + 1))
+         + dayJulian
          + dayFraction
          + B
          - 1524.5;
