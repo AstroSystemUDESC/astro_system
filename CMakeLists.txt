@@ -10,4 +10,8 @@ add_executable(astro_system main.cpp
         includes/menu.h
         menu/menu.cpp
         includes/moon.h
-        moon/calcMoonPhase.cpp)
+        moon/calcMoonPhase.cpp
+        includes/formulas.h
+        formulas/calcFormulas.cpp
+        includes/planets.h
+        planets/infoPlanets.cpp)
