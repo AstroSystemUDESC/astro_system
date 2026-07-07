@@ -60,7 +60,7 @@ void menuPositionStar() {
 
 void menuCalcFormulas() {
     int subOpcao = -1;
-    while (subOpcao != 0) {
+    while (true) {
         cout << "\n--- SUBMENU: FÓRMULAS ASTRONÔMICAS ---\n";
         cout << "1. Gravitação Universal\n";
         cout << "2. Leis de Kepler (3ª Lei)\n";
@@ -73,6 +73,10 @@ void menuCalcFormulas() {
         
         subOpcao = lerOpcaoMenu();
 
+        if (subOpcao == 0) {
+         break;
+        }
+
         switch (subOpcao) {
             case 1: calcularGravitacao(); break;
             case 2: calcularKepler(); break;
@@ -80,8 +84,20 @@ void menuCalcFormulas() {
             case 4: calcularHubble(); break;
             case 5: calcularLuminosidade(); break;
             case 6: calcularStefanBoltzmann(); break;
-            case 0: break;
             default: cout << "\nOpção inválida no módulo de fórmulas!\n"; break;
+        }
+        cout << "Você gostaria de resolver mais alguma fórmula?\n";
+        cout << "1 - Sim\n";
+        cout << "0 - Não (voltar ao Menu)\n";
+        cin >> subOpcao;
+
+        while (subOpcao != 0 && subOpcao != 1) {
+            cout << "Opção inválida, por favor, digite ou 0 ou 1!\n";
+            cin >> subOpcao;
+        }
+
+        if (subOpcao == 0) {
+            break;
         }
     }
 }
@@ -95,6 +111,10 @@ void menuPlanets() {
         
         escolha = lerOpcaoMenu();
 
+        if (escolha == 0) {
+            break;
+        }
+
         switch (escolha) {
             case 1: imprimirPlaneta("Mercúrio", "167 °C", "3.70 m/s²", "3.285e23 kg", "57.91M km", "58d 15h", "88 dias", 0, "Exosfera", "Estável", "Difícil", 0.5); break;
             case 2: imprimirPlaneta("Vênus", "464 °C", "8.87 m/s²", "4.867e24 kg", "108.2M km", "243 dias", "225 dias", 0, "96.5% CO2", "Uniforme", "Excelente", 1.5); break;
@@ -104,8 +124,21 @@ void menuPlanets() {
             case 6: imprimirPlaneta("Saturno", "-139 °C", "10.44 m/s²", "5.683e26 kg", "1.434B km", "10h 33m", "29 anos", 146, "96.3% H2", "Primavera", "Boa", 0.44); break;
             case 7: imprimirPlaneta("Urano", "-197 °C", "8.69 m/s²", "8.681e25 kg", "2.871B km", "17h 14m", "84 anos", 28, "82.5% H2", "Extrema", "Com Binóculos", 0.71); break;
             case 8: imprimirPlaneta("Netuno", "-201 °C", "11.15 m/s²", "1.024e26 kg", "4.495B km", "16h 06m", "165 anos", 16, "80% H2", "Estações", "Via Telescópio", 0.67); break;
-            case 0: break;
             default: cout << "\n[ERRO] Seleção fora do intervalo!\n"; break;
+        }
+
+        cout << "Você gostaria de conhecer mais algum outro planeta?\n";
+        cout << "1 - Sim\n";
+        cout << "0 - Não (voltar ao Menu)\n";
+        cin >> escolha;
+
+        while (escolha != 0 && escolha != 1) {
+            cout << "Opção inválida, por favor, digite ou 0 ou 1!\n";
+            cin >> escolha;
+        }
+
+        if (escolha == 0) {
+            break;
         }
     }
 }
