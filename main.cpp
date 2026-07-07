@@ -1,18 +1,38 @@
 #include <iostream>
+#include "includes/positionStar.h"
+#include "includes/menu.h"
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+using namespace std;
 
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
+    int action;
 
-    const auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    populateStarsVector();
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
+    while (true) {
+        cout << "Bem-vindo ao Astro System, o que você quer descobrir hoje?\n";
+        cout << "------------------\n";
+        cout << "1 - Posição de uma estrela no céu.\n";
+        cout << "2 - Cálculo de fórmulas astronomicas\n";
+        cout << "3 - Informações sobre planetas\n";
+        cout << "4 - Informações sobre a Lua\n";
+        cout << "0 - Sair\n";
+        cin >> action;
+
+        while (action < 0 || action > 4) {
+            cout << "Ação inválida, por favor, digite um número entre 0 e 4";
+            cin >> action;
+        }
+
+        if (action == 0) {
+            break;
+        }
+        if (action == 1) {
+            menuPositionStar();
+        }
+        if (action == 4) {
+            menuMoon();
+        }
     }
-
     return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
 }
