@@ -10,7 +10,7 @@
 using namespace std;
 
 double rightAscensionToDegrees(int hours, int minutes, int seconds); // Cálculo da Ascensão Reta (AR)
-double calculateJDUTC(int year, int month, int day, int hour, int minute, int second); // Cálculo do número do dia Juliano
+double calculateJDUTC(); // Cálculo do número do dia Juliano
 double calculateTSG(double julianDay); // Cálculo do Tempo Sideral de Greenwich (TSG)
 double calculateTSL(double tsg, double longitude); // Cálculo do Tempo Sideral Local (TSL)
 double calculateHourAngle(double tsl, double ar);

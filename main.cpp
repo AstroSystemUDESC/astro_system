@@ -30,6 +30,9 @@ int main() {
         if (action == 1) {
             menuPositionStar();
         }
+        if (action == 4) {
+            menuMoon();
+        }
     }
     return 0;
 }

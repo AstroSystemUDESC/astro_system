@@ -8,4 +8,6 @@ add_executable(astro_system main.cpp
         stars/positionStar.cpp
         stars/calcPositionStar.cpp
         includes/menu.h
-        menu/menu.cpp)
+        menu/menu.cpp
+        includes/moon.h
+        moon/calcMoonPhase.cpp)
